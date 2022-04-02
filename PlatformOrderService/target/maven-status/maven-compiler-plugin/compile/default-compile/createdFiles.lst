@@ -1,0 +1,15 @@
+com\it\resultentity\order\Order.class
+com\it\resultentity\ResultEntity.class
+com\it\controller\OrderController.class
+com\it\ResultContant\ResultConstant.class
+com\it\utils\ResultEntityUtils.class
+com\it\OrderServiceApplication.class
+com\it\Service\order\IOrderServiceImpl.class
+com\it\exception\ControllerGlobalExceptionHandler.class
+com\it\config\DruidConfig.class
+com\it\config\LocalRedisConfig.class
+com\it\aop\ServiceGlobalAopHandler.class
+com\it\config\LocalApplicationContext.class
+com\it\Service\order\IOrderService.class
+com\it\mapper\order\OrderMapper.class
+com\it\config\DataSourceConfig.class
