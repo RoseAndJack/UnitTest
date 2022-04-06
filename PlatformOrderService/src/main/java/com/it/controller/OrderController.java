@@ -57,7 +57,6 @@ public class OrderController {
     @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
     public ResultEntity<Order> index(@PathVariable(value = "id") String id) throws JsonProcessingException {
         log.info("param id ===> "+id);
-        log.info("web hook for our system.");
         Order order = orderService.queryOrderDataById(Integer.parseInt(id));
         return ResultEntityUtils.returnSuccess(order);
     }
