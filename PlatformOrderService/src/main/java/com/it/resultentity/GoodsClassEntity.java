@@ -3,20 +3,26 @@
  *                                  @版权所有翻版必究                                    *
  * ************************************************************************************/
 
-package com.it.mapper.order.goodsbrand;
+package com.it.resultentity;
 
-import org.apache.ibatis.annotations.Mapper;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * ClassName: GoodsClassMapper
- * Package: com.it.mapper.order.goodsbrand
+ * ClassName: GoodsClassEntity
+ * Package: com.it.resultentity
  * Description:
  *
- * @create: 2022-04-24 16:48
+ * @create: 2022-04-25 08:53
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
-@Mapper
-public interface GoodsClassMapper {
-
+@Data
+@Getter
+@Setter
+public class GoodsClassEntity {
+    private Integer goodsClassId;
+    private String goodsClassName;
+    private Integer goodsBrandId;
 }

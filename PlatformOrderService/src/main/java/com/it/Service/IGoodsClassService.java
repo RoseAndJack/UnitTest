@@ -3,22 +3,24 @@
  *                                  @版权所有翻版必究                                    *
  * ************************************************************************************/
 
-package com.it.Service.goods;
+package com.it.Service;
 
-import com.it.resultentity.GoodsEntity;
+import com.it.resultentity.GoodsClassEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
- * ClassName: IGoodsService
- * Package: com.it.Service.goods
+ * ClassName: IGoodsClassService
+ * Package: com.it.Service
  * Description:
  *
- * @create: 2022-04-24 11:39
+ * @create: 2022-04-25 09:01
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
-public interface IGoodsService {
-    List<GoodsEntity> getGoodsList();
-    List<GoodsEntity> getGoodsPageInfo(Integer CUR,Integer SIZE,Integer ID);
+
+public interface IGoodsClassService {
+    List<GoodsClassEntity> getClassListById(Integer id);
 }

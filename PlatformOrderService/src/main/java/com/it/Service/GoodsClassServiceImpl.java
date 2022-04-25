@@ -3,10 +3,10 @@
  *                                  @版权所有翻版必究                                    *
  * ************************************************************************************/
 
-package com.it.Service.goods;
+package com.it.Service;
 
-import com.it.mapper.order.GoodsMapper;
-import com.it.resultentity.GoodsEntity;
+import com.it.mapper.order.GoodsClassMapper;
+import com.it.resultentity.GoodsClassEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,27 +14,24 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * ClassName: IGoodsServiceImpl
- * Package: com.it.Service.goods
+ * ClassName: GoodsClassServiceImpl
+ * Package: com.it.Service
  * Description:
  *
- * @create: 2022-04-24 11:40
+ * @create: 2022-04-25 09:02
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
 @Service
 @Transactional(rollbackFor = {Exception.class})
-public class IGoodsServiceImpl implements IGoodsService{
+public class GoodsClassServiceImpl implements IGoodsClassService {
 
     @Autowired
-    private GoodsMapper goodsMapper;
-    @Override
-    public List<GoodsEntity> getGoodsList() {
-        return goodsMapper.getGoodsList();
-    }
+    private GoodsClassMapper goodsClassMapper;
 
     @Override
-    public List<GoodsEntity> getGoodsPageInfo(Integer CUR, Integer SIZE,Integer ID) {
-        return goodsMapper.getGoodsPageInfo(CUR,SIZE,ID);
+    public List<GoodsClassEntity> getClassListById(Integer id) {
+        List<GoodsClassEntity> list = goodsClassMapper.getClassListById(id);
+        return list;
     }
 }

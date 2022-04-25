@@ -6,11 +6,13 @@
 package com.it.controller;
 
 import com.it.Service.goods.IGoodsService;
+import com.it.mapper.order.GoodsClassMapper;
 import com.it.resultentity.GoodsEntity;
 import com.it.resultentity.ResultEntity;
 import com.it.utils.ResultEntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,5 +41,13 @@ public class GoodsInfoController {
         List<GoodsEntity> goodsList = goodsService.getGoodsList();
         return ResultEntityUtils.returnSuccess(goodsList);
 
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/page/{currentIndex}/{size}/{classId}", method = RequestMethod.GET)
+    public ResultEntity<List<GoodsEntity>> getGoodsPageInfo(@PathVariable("currentIndex") Integer currentIndex, @PathVariable("size") Integer size,
+    @PathVariable("classId")Integer classId) {
+        List<GoodsEntity> list = goodsService.getGoodsPageInfo(currentIndex, size,classId);
+        return ResultEntityUtils.returnSuccess(list);
     }
 }

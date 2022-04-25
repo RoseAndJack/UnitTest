@@ -26,7 +26,7 @@ import java.math.BigDecimal;
 public class GoodsEntity {
     private Integer gid;
     private String goodsCompany;
-    private String goodsType;
+    private String goodsClassId;
     private String goodsName;
     private String goodsPic;
     private BigDecimal price;

@@ -5,7 +5,7 @@
 
 package com.it.mapper.order;
 
-import com.it.resultentity.GoodsEntity;
+import com.it.resultentity.GoodsClassEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -13,19 +13,17 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * ClassName: GoodsMapper
+ * ClassName: GoodsClassMapper
  * Package: com.it.mapper.order
  * Description:
  *
- * @create: 2022-04-24 11:34
+ * @create: 2022-04-25 08:56
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
 @Mapper
-public interface GoodsMapper {
-    @Select("SELECT * FROM GOODS_INFO")
-    List<GoodsEntity> getGoodsList();
+public interface GoodsClassMapper {
 
-    @Select("SELECT * FROM GOODS_INFO A WHERE A.GOODSCLASSID =#{ID} LIMIT #{CUR},#{SIZE}")
-    List<GoodsEntity> getGoodsPageInfo(@Param("CUR") Integer cur, @Param("SIZE") Integer size,@Param("ID")Integer id);
+    @Select("SELECT * FROM GOODS_CLASS A WHERE A.GOODSBRANDID = #{GOODSBRANDID} ORDER BY A.GOODSCLASSID ASC ")
+    List<GoodsClassEntity> getClassListById(@Param("GOODSBRANDID")Integer goodsBrandId);
 }
