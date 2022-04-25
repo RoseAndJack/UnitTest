@@ -5,29 +5,15 @@
 
 package com.it.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONPObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.it.Service.order.IOrderService;
 import com.it.resultentity.ResultEntity;
 import com.it.resultentity.order.Order;
 import com.it.utils.ResultEntityUtils;
-import org.apache.ibatis.annotations.Param;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
-import java.sql.Timestamp;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * ClassName: OrderController
@@ -55,8 +41,8 @@ public class OrderController {
      */
     @ResponseBody
     @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
-    public ResultEntity<Order> index(@PathVariable(value = "id") String id) throws JsonProcessingException {
-        log.info("param id ===> "+id);
+    public ResultEntity<Order> index(@PathVariable(value = "id") String id) {
+        log.info("param id ===> " + id);
         Order order = orderService.queryOrderDataById(Integer.parseInt(id));
         return ResultEntityUtils.returnSuccess(order);
     }
