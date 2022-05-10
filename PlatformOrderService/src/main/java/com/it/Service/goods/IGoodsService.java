@@ -6,6 +6,7 @@
 package com.it.Service.goods;
 
 import com.it.resultentity.GoodsEntity;
+import com.it.resultentity.order.GoodsWithSoldAmountEntity;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ import java.util.List;
  */
 public interface IGoodsService {
     List<GoodsEntity> getGoodsList();
-    List<GoodsEntity> getGoodsPageInfo(Integer CUR,Integer SIZE,Integer ID);
+    List<GoodsWithSoldAmountEntity> getGoodsPageInfo(Integer CUR, Integer SIZE, Integer ID);
 }

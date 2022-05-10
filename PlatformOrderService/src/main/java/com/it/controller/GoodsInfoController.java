@@ -9,6 +9,7 @@ import com.it.Service.goods.IGoodsService;
 import com.it.mapper.order.GoodsClassMapper;
 import com.it.resultentity.GoodsEntity;
 import com.it.resultentity.ResultEntity;
+import com.it.resultentity.order.GoodsWithSoldAmountEntity;
 import com.it.utils.ResultEntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,9 +46,9 @@ public class GoodsInfoController {
 
     @ResponseBody
     @RequestMapping(value = "/page/{currentIndex}/{size}/{classId}", method = RequestMethod.GET)
-    public ResultEntity<List<GoodsEntity>> getGoodsPageInfo(@PathVariable("currentIndex") Integer currentIndex, @PathVariable("size") Integer size,
+    public ResultEntity<List<GoodsWithSoldAmountEntity>> getGoodsPageInfo(@PathVariable("currentIndex") Integer currentIndex, @PathVariable("size") Integer size,
     @PathVariable("classId")Integer classId) {
-        List<GoodsEntity> list = goodsService.getGoodsPageInfo(currentIndex, size,classId);
+        List<GoodsWithSoldAmountEntity> list = goodsService.getGoodsPageInfo(currentIndex, size,classId);
         return ResultEntityUtils.returnSuccess(list);
     }
 }

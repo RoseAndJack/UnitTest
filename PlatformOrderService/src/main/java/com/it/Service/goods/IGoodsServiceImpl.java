@@ -7,6 +7,7 @@ package com.it.Service.goods;
 
 import com.it.mapper.order.GoodsMapper;
 import com.it.resultentity.GoodsEntity;
+import com.it.resultentity.order.GoodsWithSoldAmountEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,7 +35,7 @@ public class IGoodsServiceImpl implements IGoodsService{
     }
 
     @Override
-    public List<GoodsEntity> getGoodsPageInfo(Integer CUR, Integer SIZE,Integer ID) {
+    public List<GoodsWithSoldAmountEntity> getGoodsPageInfo(Integer CUR, Integer SIZE, Integer ID) {
         return goodsMapper.getGoodsPageInfo(CUR,SIZE,ID);
     }
 }
