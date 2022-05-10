@@ -36,16 +36,6 @@ public class LocalApplicationAware implements ApplicationContextAware {
 
     public void init() {
         if (null != applicationContext) {
-            //TODO init
-            List<Object> list = new ArrayList<>();
-            list.add(1);
-            list.add(2);
-            list.add(1);
-            list = new ArrayList<>(new HashSet<>(list));
-            for (Object o : list
-            ) {
-                System.out.println((Integer)o);
-            }
         }
     }
 
