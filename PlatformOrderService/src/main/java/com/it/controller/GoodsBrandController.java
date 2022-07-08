@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.concurrent.*;
 
 /**
  * ClassName: GoodsBrandController
@@ -29,11 +31,24 @@ import java.util.List;
 @RequestMapping(value = {"/goodsbrand"})
 public class GoodsBrandController {
 
+    @Resource(name = "executorService")
+    private ExecutorService executorService;
+
     @Autowired
     private IGoodsBrandService goodsBrandService;
 
     @RequestMapping(value = {"/list"},method = RequestMethod.GET)
-    public ResultEntity<List<GoodsBrandEntity>> getBrandList(){
+    public ResultEntity<List<GoodsBrandEntity>> getBrandList() throws ExecutionException, InterruptedException {
+        FutureTask futureTask=new FutureTask(new Callable() {
+            @Override
+            public String call() throws InterruptedException {
+                TimeUnit.SECONDS.sleep(2);
+                System.out.println(Thread.currentThread().getName());
+                return "hello world.";
+            }
+        });
+        executorService.submit(futureTask);
+        System.out.println( futureTask.get());
         List<GoodsBrandEntity> brandList = goodsBrandService.getBrandList();
         return ResultEntityUtils.returnSuccess(brandList);
     }

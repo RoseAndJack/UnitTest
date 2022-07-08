@@ -10,9 +10,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * ClassName: LocalApplicationAware
@@ -28,6 +25,7 @@ public class LocalApplicationAware implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
@@ -36,6 +34,15 @@ public class LocalApplicationAware implements ApplicationContextAware {
 
     public void init() {
         if (null != applicationContext) {
+
+
+            {
+                int a=12;
+                {
+
+                    int b =14;
+                }
+            }
         }
     }
 

@@ -21,9 +21,4 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @version: 1.0.0
  */
 
-public class TestOrder {
 
-
-
-
-}
