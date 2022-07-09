@@ -5,7 +5,6 @@
 
 package com.it.Service.goodsbrand;
 
-import com.it.mapper.order.goodsbrand.GoodsBrandMapper;
 import com.it.resultentity.GoodsBrandEntity;
 
 import java.util.List;
@@ -21,4 +20,9 @@ import java.util.List;
  */
 public interface IGoodsBrandService {
     List<GoodsBrandEntity> getBrandList();
+    void test();
+
+
+    GoodsBrandEntity  testCaching(GoodsBrandEntity goodsBrand);
+    GoodsBrandEntity getCache(Integer id);
 }

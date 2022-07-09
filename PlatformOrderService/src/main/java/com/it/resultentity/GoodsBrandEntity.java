@@ -5,9 +5,15 @@
 
 package com.it.resultentity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * ClassName: GoodsBrandEntity
@@ -21,10 +27,13 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-public class GoodsBrandEntity {
+@TableName(value = "goods_brand")
+public class GoodsBrandEntity implements Serializable {
+    @TableId(value = "goodsbrandid",type = IdType.AUTO)
     private Integer goodsBrandId;
+    @TableField(value = "goodsbrandname")
     private String goodsBrandName;
-    private String area;
+    //private String area;
 
 
 

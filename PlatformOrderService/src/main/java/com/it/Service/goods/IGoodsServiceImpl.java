@@ -9,6 +9,7 @@ import com.it.mapper.order.GoodsMapper;
 import com.it.resultentity.GoodsEntity;
 import com.it.resultentity.order.GoodsWithSoldAmountEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,7 @@ import java.util.List;
  * @version: 1.0.0
  */
 @Service
+@EnableScheduling
 @Transactional(rollbackFor = {Exception.class})
 public class IGoodsServiceImpl implements IGoodsService{
 
@@ -38,4 +40,5 @@ public class IGoodsServiceImpl implements IGoodsService{
     public List<GoodsWithSoldAmountEntity> getGoodsPageInfo(Integer CUR, Integer SIZE, Integer ID) {
         return goodsMapper.getGoodsPageInfo(CUR,SIZE,ID);
     }
+
 }

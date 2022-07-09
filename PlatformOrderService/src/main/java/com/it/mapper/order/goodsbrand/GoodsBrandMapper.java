@@ -5,6 +5,7 @@
 
 package com.it.mapper.order.goodsbrand;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.it.resultentity.GoodsBrandEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -21,7 +22,7 @@ import java.util.List;
  * @version: 1.0.0
  */
 @Mapper
-public interface GoodsBrandMapper {
+public interface GoodsBrandMapper extends BaseMapper<GoodsBrandEntity> {
     @Select(value = {"SELECT * FROM GOODS_BRAND"})
     List<GoodsBrandEntity> getBrandList();
 }
