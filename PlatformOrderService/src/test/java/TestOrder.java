@@ -5,11 +5,9 @@
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.test.context.junit4.SpringRunner;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * ClassName: OrderTest
@@ -20,5 +18,14 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
+@SpringBootTest
+@RunWith(SpringJUnit4ClassRunner.class)
+public class TestOrder {
 
+    @Test
+    public void test() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String encode = encoder.encode("admin");
+    }
+}
 

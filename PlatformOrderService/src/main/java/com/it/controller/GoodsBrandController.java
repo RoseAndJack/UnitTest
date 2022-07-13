@@ -10,10 +10,8 @@ import com.it.mapper.order.goodsbrand.GoodsBrandMapper;
 import com.it.resultentity.GoodsBrandEntity;
 import com.it.resultentity.ResultEntity;
 import com.it.utils.ResultEntityUtils;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,7 +32,7 @@ import java.util.concurrent.ExecutorService;
  */
 @RestController
 @RequestMapping(value = {"/goodsbrand"})
-public class GoodsBrandController implements ApplicationContextAware {
+public class GoodsBrandController  {
 
     private ApplicationContext applicationContext;
     @Resource(name = "executorService")
@@ -47,20 +45,9 @@ public class GoodsBrandController implements ApplicationContextAware {
 
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
     public ResultEntity<List<GoodsBrandEntity>> getBrandList() throws ExecutionException, InterruptedException {
-        GoodsBrandEntity entity = new GoodsBrandEntity();
-        entity.setGoodsBrandId(91);
-        entity.setGoodsBrandName("sdj");
-        goodsBrandService.testCaching(entity);
-        GoodsBrandEntity entity1 = goodsBrandMapper.selectById(91);
-        System.out.println(entity1.getGoodsBrandName());
-        GoodsBrandEntity cache = goodsBrandService.getCache(91);
-        System.out.println(cache.getGoodsBrandName());
+        System.out.println(System.getProperty("user.dir"));
         List<GoodsBrandEntity> brandList = goodsBrandService.getBrandList();
         return ResultEntityUtils.returnSuccess(brandList);
     }
 
-    @Override
-    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext=applicationContext;
-    }
 }

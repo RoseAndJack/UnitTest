@@ -23,6 +23,6 @@ public interface IGoodsBrandService {
     void test();
 
 
-    GoodsBrandEntity  testCaching(GoodsBrandEntity goodsBrand);
-    GoodsBrandEntity getCache(Integer id);
+    GoodsBrandEntity  save(GoodsBrandEntity goodsBrand);
+    GoodsBrandEntity findById(Integer id);
 }

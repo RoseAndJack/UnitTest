@@ -9,18 +9,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.concurrent.ExecutorService;
@@ -42,22 +37,10 @@ import java.util.concurrent.ExecutorService;
 public class OrderServiceApplication implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
-
     private final static Logger log = LogManager.getLogger(OrderServiceApplication.class);
 
-    @Bean
-    Object initPlatformTransactionManager(@Autowired @Qualifier(value = "transactionManager") PlatformTransactionManager transactionManager, @Value(value = "${sys.dir}") String path) {
-        log.info(transactionManager);
-        if (null != path) {
-            System.out.println(path);
-        }
-        return null;
-    }
-
-
-
     public static void main(String[] args) {
-        SpringApplication.run(com.it.OrderServiceApplication.class, args);
+        SpringApplication.run(OrderServiceApplication.class, args);
         ApplicationContext applicationContext = OrderServiceApplication.applicationContext;
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -66,6 +49,7 @@ public class OrderServiceApplication implements ApplicationContextAware {
                 if (null != executorService) {
                     if (!executorService.isTerminated() || !executorService.isShutdown()) {
                         executorService.shutdown();
+
                     }
                 }
             }

@@ -5,14 +5,24 @@
 
 package com.it.config;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
+
 /**
- * ClassName: LocalLogoutFilter
+ * ClassName: NameComponent
  * Package: com.it.config
  * Description:
  *
- * @create: 2022-07-12 10:35
+ * @create: 2022-07-13 09:06
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
-public class LocalLogoutFilter {
+@Component(value = "nameComponent")
+public class NameComponent {
+    public boolean checkId(Authentication authentication,Integer userId){
+        if(authentication.isAuthenticated()){
+            return userId%2==0;
+        }
+        return false;
+    }
 }

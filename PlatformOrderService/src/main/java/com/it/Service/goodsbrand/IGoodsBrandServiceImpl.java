@@ -53,14 +53,14 @@ public class IGoodsBrandServiceImpl implements IGoodsBrandService {
 
     @CachePut(cacheNames = "goodsBrand::getCache" ,key = "#goodsBrand.goodsBrandId")
     @Override
-    public GoodsBrandEntity testCaching(GoodsBrandEntity goodsBrand) {
+    public GoodsBrandEntity save(GoodsBrandEntity goodsBrand) {
         int result = goodsBrandMapper.insert(goodsBrand);
            return goodsBrand;
     }
 
     @Cacheable(cacheNames = "goodsBrand::getCache",key = "#id")
     @Override
-    public GoodsBrandEntity getCache(Integer id){
+    public GoodsBrandEntity findById(Integer id){
         return goodsBrandMapper.selectById(id);
     }
 }
