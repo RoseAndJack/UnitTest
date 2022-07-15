@@ -8,7 +8,10 @@ package com.it;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -34,8 +37,10 @@ import java.util.concurrent.ExecutorService;
 @MapperScan("com.it.mapper.*")
 @EnableTransactionManagement
 @EnableCaching
-public class OrderServiceApplication implements ApplicationContextAware {
+public class OrderServiceApplication implements ApplicationContextAware, CommandLineRunner {
 
+    @Autowired
+    RabbitTemplate rabbitTemplate;
     private static ApplicationContext applicationContext;
     private final static Logger log = LogManager.getLogger(OrderServiceApplication.class);
 
@@ -59,5 +64,11 @@ public class OrderServiceApplication implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+    }
+
+    @Override
+    public void run(String[] args) {
+        log.info("start when app run.");
+       // rabbitTemplate.convertAndSend("rabbit_test_queue", "hello message");
     }
 }

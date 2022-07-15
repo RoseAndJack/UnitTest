@@ -28,6 +28,8 @@ import java.util.concurrent.Executors;
 public class LocalThreadPool {
     private ExecutorService executorService;
     private static final int PROCESSOR_NUMBER = Runtime.getRuntime().availableProcessors();
+
+
     public LocalThreadPool() {
         executorService = Executors.newFixedThreadPool(PROCESSOR_NUMBER);
     }

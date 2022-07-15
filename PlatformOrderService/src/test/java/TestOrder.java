@@ -18,14 +18,15 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
-@SpringBootTest
+@SpringBootTest(classes = TestOrder.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TestOrder {
 
     @Test
     public void test() {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encode = encoder.encode("admin");
+        String encode = encoder.encode("guest");
+        System.out.println(encode);
     }
 }
 

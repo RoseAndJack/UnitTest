@@ -5,14 +5,25 @@
 
 package com.it.config;
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.amqp.core.Queue;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.io.IOException;
 
 /**
  * ClassName: AplicationConfig
@@ -23,8 +34,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
+@Order(value = 1)
 @Configuration
-public class ApplicationConfig implements WebMvcConfigurer {
+public class ApplicationConfig extends DispatcherServlet implements WebMvcConfigurer {
+
 
     @Bean(value = {"passwordEncoder"})
     public PasswordEncoder passwordEncoder() {
@@ -38,8 +51,31 @@ public class ApplicationConfig implements WebMvcConfigurer {
         return hierarchy;
     }
 
+    @Bean(value = {"sqlSession"})
+    public SqlSession session(@Autowired SqlSessionFactory sqlSessionFactory) throws IOException {
+        ClassPathResource resource =new ClassPathResource("");
+        return sqlSessionFactory.openSession();
+    }
+
+    /**
+     * 配置资源文件访问器
+     * @param path
+     * @return
+     */
+    @Bean(value = {"classPathResource"})
+    public Resource classPathResource(@Value("${platformorderservice.classpathdir}")String path){
+        ClassPathResource resource =new ClassPathResource(path);
+        return  resource;
+    }
+
+
+    @Bean(value = {"rabbitmqQueue"})
+    public Queue rabbitmqQueue(){
+        return new Queue("rabbit_test_queue");
+    }
     /**
      * 配置可访问静态路径
+     *
      * @param registry
      */
     @Override
