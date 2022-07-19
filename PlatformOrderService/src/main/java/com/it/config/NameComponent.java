@@ -17,11 +17,12 @@ import org.springframework.stereotype.Component;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
+
 @Component(value = "nameComponent")
 public class NameComponent {
-    public boolean checkId(Authentication authentication,Integer userId){
-        if(authentication.isAuthenticated()){
-            return userId%2==0;
+    public boolean checkId(Authentication authentication, Integer userId) {
+        if (authentication.isAuthenticated()) {
+            return userId % 2 == 0;
         }
         return false;
     }

@@ -5,8 +5,7 @@
 
 package com.it.controller;
 
-import com.it.mapper.order.goodsbrand.GoodsBrandMapper;
-import com.it.resultentity.GoodsBrandEntity;
+import com.it.Service.goodsbrand.IGoodsBrandService;
 import com.it.resultentity.ResultEntity;
 import com.it.utils.ResultEntityUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * ClassName: LoginController
@@ -33,7 +31,7 @@ import java.util.List;
 public class LoginController {
 
     @Autowired
-    private GoodsBrandMapper goodsBrandMapper;
+    private IGoodsBrandService goodsBrandService;
     @Autowired
     SqlSessionFactory sqlSessionFactory;
 
@@ -42,9 +40,9 @@ public class LoginController {
         return "doLogin";
     }
 
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
-    public ResultEntity<Object> index(Authentication authentication,@Autowired HttpServletRequest request) throws SQLException {
-        List<GoodsBrandEntity> goodsBrand = goodsBrandMapper.getBrandList();
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public ResultEntity<Object> index(Authentication authentication, @Autowired HttpServletRequest request) throws SQLException {
+        goodsBrandService.getBrandList();
         return ResultEntityUtils.returnSuccess("OK");
     }
 }

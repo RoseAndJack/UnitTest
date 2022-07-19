@@ -8,6 +8,8 @@ package com.it.config;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
+import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -55,6 +57,11 @@ public class ApplicationConfig extends DispatcherServlet implements WebMvcConfig
     public SqlSession session(@Autowired SqlSessionFactory sqlSessionFactory) throws IOException {
         ClassPathResource resource =new ClassPathResource("");
         return sqlSessionFactory.openSession();
+    }
+
+    @Bean(value = {"messageConverter"})
+    public MessageConverter messageConverter(){
+        return new Jackson2JsonMessageConverter();
     }
 
     /**

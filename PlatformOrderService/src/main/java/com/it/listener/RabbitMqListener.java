@@ -5,9 +5,9 @@
 
 package com.it.listener;
 
+import com.it.resultentity.GoodsBrandEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
@@ -23,11 +23,12 @@ import org.springframework.stereotype.Component;
 @Component(value = "rabbitMqListener")
 @RabbitListener(queues = {"rabbit_test_queue"})
 public class RabbitMqListener {
+
     private final static Logger log = LogManager.getLogger(RabbitMqListener.class);
 
-
-    @RabbitHandler(isDefault = true)
-    public void consume(String message) {
+   // @RabbitHandler(isDefault = true)
+    public void consume(GoodsBrandEntity message) {
         log.info("message from queue ：" + message);
+        System.out.println(message.hashCode());
     }
 }

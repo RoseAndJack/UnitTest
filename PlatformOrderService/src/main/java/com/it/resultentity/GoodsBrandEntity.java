@@ -29,12 +29,11 @@ import java.io.Serializable;
 @Getter
 @TableName(value = "goods_brand")
 public class GoodsBrandEntity implements Serializable {
-    @TableId(value = "goodsbrandid",type = IdType.AUTO)
+    @TableId(value = "goodsbrandid", type = IdType.AUTO)
     private Integer goodsBrandId;
     @TableField(value = "goodsbrandname")
     private String goodsBrandName;
     //private String area;
-
 
 
 }

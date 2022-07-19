@@ -5,6 +5,7 @@
 
 package com.it.mapper.order;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.it.resultentity.GoodsClassEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,8 +23,8 @@ import java.util.List;
  * @version: 1.0.0
  */
 @Mapper
-public interface GoodsClassMapper {
+public interface GoodsClassMapper extends BaseMapper {
 
     @Select("SELECT * FROM GOODS_CLASS A WHERE A.GOODSBRANDID = #{GOODSBRANDID} ORDER BY A.GOODSCLASSID ASC ")
-    List<GoodsClassEntity> getClassListById(@Param("GOODSBRANDID")Integer goodsBrandId);
+    List<GoodsClassEntity> getClassListById(@Param("GOODSBRANDID") Integer goodsBrandId);
 }

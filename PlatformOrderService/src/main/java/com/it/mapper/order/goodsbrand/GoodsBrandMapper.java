@@ -21,6 +21,7 @@ import java.util.List;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
+//@CacheNamespace
 @Mapper
 public interface GoodsBrandMapper extends BaseMapper<GoodsBrandEntity> {
     @Select(value = {"SELECT * FROM GOODS_BRAND"})

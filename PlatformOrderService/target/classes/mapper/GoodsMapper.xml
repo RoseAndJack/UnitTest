@@ -10,6 +10,7 @@
         <result column="goodstype" property="goodsType" jdbcType="VARCHAR"></result>
         <result column="goodstype" property="goodsType" jdbcType="VARCHAR"></result>
     </resultMap>
+
     <select id="queryOrderDataById" parameterType="INTEGER" resultMap="DataBaseMap">
         SELECT
                A.OID,

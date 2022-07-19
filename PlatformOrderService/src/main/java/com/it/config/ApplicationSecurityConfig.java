@@ -44,6 +44,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/doLogin")
                 .defaultSuccessUrl("/index")
                // .failureUrl("/Login.html")
+                .successHandler(new LocalAuthenticationSuccessHandler())
                 .failureHandler(new LocalAuthenticationFailureHandler())
                 .usernameParameter("uname")
                 .passwordParameter("passwd")
