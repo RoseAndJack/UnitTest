@@ -33,17 +33,6 @@ public class LocalApplicationAware implements ApplicationContextAware {
     }
 
     public void init() {
-        if (null != applicationContext) {
-
-
-            {
-                int a=12;
-                {
-
-                    int b =14;
-                }
-            }
-        }
     }
 
     /**

@@ -25,8 +25,6 @@ public class TestOrder {
     @Test
     public void test() {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encode = encoder.encode("guest");
-        System.out.println(encode);
     }
 }
 
