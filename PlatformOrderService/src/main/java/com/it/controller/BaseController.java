@@ -5,6 +5,8 @@
 
 package com.it.controller;
 
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  * ClassName: BaseController
  * Package: com.it.controller
@@ -14,5 +16,6 @@ package com.it.controller;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
+@RestController
 public class BaseController {
 }

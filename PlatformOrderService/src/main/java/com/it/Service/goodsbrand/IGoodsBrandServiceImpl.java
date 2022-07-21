@@ -43,8 +43,6 @@ public class IGoodsBrandServiceImpl implements IGoodsBrandService {
     @Override
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public List<GoodsBrandEntity> getBrandList() {
-
-
         return goodsBrandMapper.getBrandList();
     }
 

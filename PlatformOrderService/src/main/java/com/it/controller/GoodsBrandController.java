@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -32,22 +31,25 @@ import java.util.concurrent.ExecutorService;
  */
 @RestController
 @RequestMapping(value = {"/goodsbrand"})
-public class GoodsBrandController  {
+public class GoodsBrandController {
 
     private ApplicationContext applicationContext;
+
     @Resource(name = "executorService")
     private ExecutorService executorService;
     @Autowired
     private GoodsBrandMapper goodsBrandMapper;
-
     @Autowired
     private IGoodsBrandService goodsBrandService;
 
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
-    public ResultEntity<List<GoodsBrandEntity>> getBrandList() throws ExecutionException, InterruptedException {
+    public ResultEntity<List<GoodsBrandEntity>> getBrandList() {
         System.out.println(System.getProperty("user.dir"));
         List<GoodsBrandEntity> brandList = goodsBrandService.getBrandList();
-        return ResultEntityUtils.returnSuccess(brandList);
+        if (null != brandList) {
+            return ResultEntityUtils.returnSuccess(brandList);
+        }
+        return ResultEntityUtils.returnFail(400, "查询结果为空");
     }
 
 }

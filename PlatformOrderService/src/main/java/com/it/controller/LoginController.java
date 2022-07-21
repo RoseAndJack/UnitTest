@@ -6,6 +6,8 @@
 package com.it.controller;
 
 import com.it.Service.goodsbrand.IGoodsBrandService;
+import com.it.mapper.order.PlatformBaseMapper;
+import com.it.resultentity.GoodsBrandEntity;
 import com.it.resultentity.ResultEntity;
 import com.it.utils.ResultEntityUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
 
 /**
  * ClassName: LoginController
@@ -28,20 +29,23 @@ import java.sql.SQLException;
  * @version: 1.0.0
  */
 @RestController
-public class LoginController {
+public class LoginController extends BaseController {
 
     @Autowired
     private IGoodsBrandService goodsBrandService;
     @Autowired
     SqlSessionFactory sqlSessionFactory;
+    @Autowired
+    PlatformBaseMapper<GoodsBrandEntity> platformBaseMapper;
 
     @RequestMapping(value = "/doLogin")
     public String doLogin(HttpServletRequest request) {
+        System.out.println(request);
         return "doLogin";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ResultEntity<Object> index(Authentication authentication, @Autowired HttpServletRequest request) throws SQLException {
+    public ResultEntity<Object> index(Authentication authentication, @Autowired HttpServletRequest request) {
         goodsBrandService.getBrandList();
         return ResultEntityUtils.returnSuccess("OK");
     }

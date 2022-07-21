@@ -3,29 +3,27 @@
  *                                  @版权所有翻版必究                                    *
  * ************************************************************************************/
 
-package com.it.mapper.order.goodsbrand;
+package com.it.mapper.order;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.it.resultentity.GoodsBrandEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
 /**
- * ClassName: GoodsBrandMapper
- * Package: com.it.mapper.order.goodsbrand
+ * ClassName: PlatformBaseMapper
+ * Package: com.it.mapper.order
  * Description:
  *
- * @create: 2022-04-24 15:40
+ * @create: 2022-07-19 14:54
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
-//@CacheNamespace
 @Mapper
-public interface GoodsBrandMapper extends BaseMapper<GoodsBrandEntity> {
-    @Select(value = {"SELECT * FROM GOODS_BRAND"})
-    List<GoodsBrandEntity> getBrandList();
+public interface PlatformBaseMapper<T> extends BaseMapper {
 
-
+    @Select(value = {"SELECT * FROM ${tableName}"})
+    List<T> findTable(@Param(value = "tableName") String tableName);
 }
