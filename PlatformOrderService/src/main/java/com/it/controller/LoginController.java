@@ -11,8 +11,9 @@ import com.it.resultentity.GoodsBrandEntity;
 import com.it.resultentity.ResultEntity;
 import com.it.utils.ResultEntityUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,15 +38,17 @@ public class LoginController extends BaseController {
     SqlSessionFactory sqlSessionFactory;
     @Autowired
     PlatformBaseMapper<GoodsBrandEntity> platformBaseMapper;
+    private Logger log = LogManager.getLogger(LoginController.class);
 
     @RequestMapping(value = "/doLogin")
     public String doLogin(HttpServletRequest request) {
-        System.out.println(request);
-        return "doLogin";
+
+      return "doLogin";
+
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public ResultEntity<Object> index(Authentication authentication, @Autowired HttpServletRequest request) {
+    public ResultEntity<Object> index( @Autowired HttpServletRequest request) {
         goodsBrandService.getBrandList();
         return ResultEntityUtils.returnSuccess("OK");
     }

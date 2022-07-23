@@ -6,6 +6,8 @@
 package com.it.config;
 
 
+import org.springframework.stereotype.Component;
+
 /**
  * ClassName: LocalRedisConfig
  * Package: com.it.config
@@ -16,5 +18,6 @@ package com.it.config;
  * @version: 1.0.0
  */
 
+@Component
 public class LocalRedisConfig  {
 }

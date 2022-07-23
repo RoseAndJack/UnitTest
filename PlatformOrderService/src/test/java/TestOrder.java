@@ -3,10 +3,13 @@
  *                                  @版权所有翻版必究                                    *
  * ************************************************************************************/
 
-import org.junit.jupiter.api.Test;
+import com.it.OrderServiceApplication;
+import com.it.mapper.order.GoodsMapper;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -18,13 +21,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
-@SpringBootTest(classes = TestOrder.class)
-@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = {OrderServiceApplication.class})
+@RunWith(value = SpringJUnit4ClassRunner.class)
+@ComponentScan(basePackages = {"com.it.*"})
 public class TestOrder {
+    @Autowired
+    private GoodsMapper goodsMapper;
 
     @Test
-    public void test() {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    public void test1() {
+       // List<GoodsEntity> list = goodsMapper.getGoodsList();
+        System.out.println("dsf");
     }
 }
 

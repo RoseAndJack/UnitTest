@@ -6,7 +6,6 @@
 package com.it.controller;
 
 import com.it.Service.goods.IGoodsService;
-import com.it.mapper.order.GoodsClassMapper;
 import com.it.resultentity.GoodsEntity;
 import com.it.resultentity.ResultEntity;
 import com.it.resultentity.order.GoodsWithSoldAmountEntity;
@@ -41,14 +40,24 @@ public class GoodsInfoController {
     public ResultEntity<List<GoodsEntity>> getGoodsList() {
         List<GoodsEntity> goodsList = goodsService.getGoodsList();
         return ResultEntityUtils.returnSuccess(goodsList);
-
     }
 
+    /**
+     * 获取商品的分页信息
+     *
+     * @param currentIndex 索引
+     * @param size 分页大小
+     * @param classId
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value = "/page/{currentIndex}/{size}/{classId}", method = RequestMethod.GET)
     public ResultEntity<List<GoodsWithSoldAmountEntity>> getGoodsPageInfo(@PathVariable("currentIndex") Integer currentIndex, @PathVariable("size") Integer size,
-    @PathVariable("classId")Integer classId) {
-        List<GoodsWithSoldAmountEntity> list = goodsService.getGoodsPageInfo(currentIndex, size,classId);
-        return ResultEntityUtils.returnSuccess(list);
+                                                                          @PathVariable("classId") Integer classId) {
+        if (null != currentIndex) {
+            List<GoodsWithSoldAmountEntity> list = goodsService.getGoodsPageInfo(currentIndex, size, classId);
+            return ResultEntityUtils.returnSuccess(list);
+        }
+        return ResultEntityUtils.returnFail(400, "failed.");
     }
 }

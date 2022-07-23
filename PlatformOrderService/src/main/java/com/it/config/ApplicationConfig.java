@@ -17,15 +17,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-import java.io.IOException;
 
 /**
  * ClassName: AplicationConfig
@@ -41,20 +35,20 @@ import java.io.IOException;
 public class ApplicationConfig extends DispatcherServlet implements WebMvcConfigurer {
 
 
-    @Bean(value = {"passwordEncoder"})
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean(value = {"roleHierarchy"})
-    public RoleHierarchy roleHierarchy() {
-        RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
-        hierarchy.setHierarchy("admin>do_update>do=do_inert=do_delete");
-        return hierarchy;
-    }
+//    @Bean(value = {"passwordEncoder"})
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    @Bean(value = {"roleHierarchy"})
+//    public RoleHierarchy roleHierarchy() {
+//        RoleHierarchyImpl hierarchy = new RoleHierarchyImpl();
+//        hierarchy.setHierarchy("admin>do_update>do=do_inert=do_delete");
+//        return hierarchy;
+//    }
 
     @Bean(value = {"sqlSession"})
-    public SqlSession session(@Autowired SqlSessionFactory sqlSessionFactory) throws IOException {
+    public SqlSession session(@Autowired SqlSessionFactory sqlSessionFactory)  {
         ClassPathResource resource =new ClassPathResource("");
         return sqlSessionFactory.openSession();
     }
