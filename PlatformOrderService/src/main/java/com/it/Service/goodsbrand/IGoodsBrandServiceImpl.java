@@ -13,15 +13,11 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.util.List;
 
 /**
@@ -43,24 +39,12 @@ public class IGoodsBrandServiceImpl implements IGoodsBrandService {
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
 
-    @Async(value = "getAsyncExecutor")
-    @Scheduled(fixedRate = 5000)
     @Override
     @Transactional(isolation = Isolation.DEFAULT, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public List<GoodsBrandEntity> getBrandList() {
         return goodsBrandMapper.getBrandList();
     }
 
-    @Async
-    @Transactional(rollbackFor = {Exception.class})
-    public void test() {
-        try {
-            System.out.println("async:" + Thread.currentThread().getName());
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            throw e;
-        }
-    }
 
     @CachePut(cacheNames = "goodsBrand::getCache", key = "#goodsBrand.goodsBrandId")
     @Override
@@ -73,15 +57,5 @@ public class IGoodsBrandServiceImpl implements IGoodsBrandService {
     @Override
     public GoodsBrandEntity findById(Integer id) {
         return goodsBrandMapper.selectById(id);
-    }
-
-    @PostConstruct
-    public void init(){
-        System.out.println("IGoodsBrandService");
-    }
-    
-    @PreDestroy
-    public void destroy(){
-        System.out.println("method has been closed.");
     }
 }

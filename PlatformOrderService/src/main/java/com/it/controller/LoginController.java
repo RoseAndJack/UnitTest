@@ -46,7 +46,7 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
-    public ResultEntity<Object> index( @Autowired HttpServletRequest request) {
+    public ResultEntity<Object> index(@Autowired HttpServletRequest request) {
         goodsBrandService.getBrandList();
         return ResultEntityUtils.returnSuccess("OK");
     }

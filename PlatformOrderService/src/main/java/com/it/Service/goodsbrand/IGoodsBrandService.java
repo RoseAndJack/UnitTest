@@ -20,7 +20,7 @@ import java.util.List;
  */
 public interface IGoodsBrandService {
     List<GoodsBrandEntity> getBrandList();
-    void test();
+
 
 
     GoodsBrandEntity  save(GoodsBrandEntity goodsBrand);

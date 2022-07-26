@@ -10,6 +10,7 @@ import com.it.resultentity.order.GoodsWithSoldAmountEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ import java.util.List;
  * @version: 1.0.0
  */
 @Mapper
+@Repository
 public interface GoodsMapper {
     @Select("SELECT * FROM GOODS_INFO")
     List<GoodsEntity> getGoodsList();

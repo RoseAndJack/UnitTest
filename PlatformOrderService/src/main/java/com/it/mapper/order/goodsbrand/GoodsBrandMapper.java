@@ -9,6 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.it.resultentity.GoodsBrandEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ import java.util.List;
  */
 //@CacheNamespace
 @Mapper
+@Repository
 public interface GoodsBrandMapper extends BaseMapper<GoodsBrandEntity> {
     @Select(value = {"SELECT * FROM GOODS_BRAND"})
     List<GoodsBrandEntity> getBrandList();

@@ -33,7 +33,7 @@ import java.util.concurrent.ExecutorService;
  * @version: 1.0.0
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = {"com.it.controller"})
+@ComponentScan(basePackages = {"com.it.*"})
 @MapperScan("com.it.mapper.*")
 @EnableTransactionManagement
 @EnableCaching

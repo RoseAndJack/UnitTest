@@ -10,6 +10,7 @@ import com.it.resultentity.GoodsClassEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ import java.util.List;
  * @version: 1.0.0
  */
 @Mapper
+@Repository
 public interface GoodsClassMapper extends BaseMapper {
 
     @Select("SELECT * FROM GOODS_CLASS A WHERE A.GOODSBRANDID = #{GOODSBRANDID} ORDER BY A.GOODSCLASSID ASC ")

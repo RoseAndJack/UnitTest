@@ -5,16 +5,11 @@
 
 package com.it.filter;
 
-import lombok.SneakyThrows;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.task.TaskExecutor;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -30,30 +25,12 @@ import java.util.concurrent.locks.ReentrantLock;
         urlPatterns = {"/*"},
         initParams = {@WebInitParam(name = "logFileName", value = "log.txt")})
 public class LocalFilter implements Filter {
-    @Qualifier(value = "getAsyncExecutor")
-    private TaskExecutor taskExecutor;
     private transient FilterConfig filterConfig;
     private ReentrantLock lock = new ReentrantLock();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        Filter.super.init(filterConfig);
-        this.filterConfig = filterConfig;
-        String logFileName = filterConfig.getInitParameter("logFileName");
-        System.out.println(logFileName);
-        taskExecutor.execute(new Runnable() {
-            @SneakyThrows
-            @Override
-            public void run() {
-                TimeUnit.SECONDS.sleep(10);
-                System.out.println("init");
-            }
-        });
-    }
-
-    @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) {
-        System.out.println("doFilter");
+        System.out.println("doFilter-----------------------------------------------");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         lock.lock();
         try {

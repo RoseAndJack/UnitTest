@@ -7,7 +7,7 @@ package com.it.mapper.order;
 
 import com.it.resultentity.order.Order;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 /**
  * ClassName: OrderMaper
@@ -19,6 +19,7 @@ import org.apache.ibatis.annotations.Param;
  * @version: 1.0.0
  */
 @Mapper
+@Repository
 public interface OrderMapper {
     Order queryOrderDataById(Integer id);
 }
