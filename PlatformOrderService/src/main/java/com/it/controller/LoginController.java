@@ -42,12 +42,10 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "/doLogin")
     public String doLogin(HttpServletRequest request) {
-
       return "doLogin";
-
     }
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public ResultEntity<Object> index( @Autowired HttpServletRequest request) {
         goodsBrandService.getBrandList();
         return ResultEntityUtils.returnSuccess("OK");

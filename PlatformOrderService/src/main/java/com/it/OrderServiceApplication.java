@@ -5,7 +5,6 @@
 
 package com.it;
 
-import com.it.resultentity.GoodsBrandEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
@@ -23,7 +22,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
 
 /**
  * ClassName: OrderApplication
@@ -35,7 +33,7 @@ import java.util.concurrent.TimeUnit;
  * @version: 1.0.0
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
-@ComponentScan(basePackages = {"com.it.*"})
+@ComponentScan(basePackages = {"com.it.controller"})
 @MapperScan("com.it.mapper.*")
 @EnableTransactionManagement
 @EnableCaching
@@ -70,13 +68,13 @@ public class OrderServiceApplication implements ApplicationContextAware, Command
 
     @Override
     public void run(String[] args) throws InterruptedException {
-        while (true) {
-            TimeUnit.SECONDS.sleep(5);
-            GoodsBrandEntity entity = new GoodsBrandEntity();
-            entity.setGoodsBrandId(Integer.MAX_VALUE);
-            entity.setGoodsBrandName("test_goods_brand_name");
+      //  while (true) {
+         //   TimeUnit.SECONDS.sleep(5);
+         //   GoodsBrandEntity entity = new GoodsBrandEntity();
+         //   entity.setGoodsBrandId(Integer.MAX_VALUE);
+         //   entity.setGoodsBrandName("test_goods_brand_name");
          //   rabbitTemplate.convertAndSend("rabbit_test_queue", entity);
-        }
+     //   }
 
     }
 }

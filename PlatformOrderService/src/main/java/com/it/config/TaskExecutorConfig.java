@@ -33,9 +33,10 @@ public class TaskExecutorConfig  implements AsyncConfigurer {
     private String sys_dir;
 
 
-    @Bean
+    @Bean(name = "getAsyncExecutor")
     @Override
     public Executor getAsyncExecutor() {
+
         ThreadPoolTaskExecutor executor =new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(5);
         executor.setMaxPoolSize(10);

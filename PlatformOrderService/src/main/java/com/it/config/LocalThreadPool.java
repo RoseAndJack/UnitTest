@@ -35,7 +35,7 @@ public class LocalThreadPool {
     }
 
     @Scope(value = "singleton")
-    @Bean(value = "executorService")
+    @Bean(name = "executorService")
     @Lazy
     public ExecutorService getExecutorService() {
         return executorService;
