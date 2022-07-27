@@ -15,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -37,10 +38,11 @@ import java.util.concurrent.ExecutorService;
 @MapperScan("com.it.mapper.*")
 @EnableTransactionManagement
 @EnableCaching
+@ServletComponentScan
 public class OrderServiceApplication implements ApplicationContextAware, CommandLineRunner {
 
     @Autowired
-    RabbitTemplate rabbitTemplate;
+    private RabbitTemplate rabbitTemplate;
     private static ApplicationContext applicationContext;
     private final static Logger log = LogManager.getLogger(OrderServiceApplication.class);
 
@@ -54,7 +56,6 @@ public class OrderServiceApplication implements ApplicationContextAware, Command
                 if (null != executorService) {
                     if (!executorService.isTerminated() || !executorService.isShutdown()) {
                         executorService.shutdown();
-
                     }
                 }
             }

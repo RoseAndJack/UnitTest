@@ -39,7 +39,7 @@ public class OrderController {
      * @return
      * @throws JsonProcessingException
      */
-    @ResponseBody
+
     @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
     public ResultEntity<Order> index(@PathVariable(value = "id") String id) {
         log.info("param id ===> " + id);

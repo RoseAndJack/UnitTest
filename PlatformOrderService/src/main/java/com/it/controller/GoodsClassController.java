@@ -31,7 +31,7 @@ public class GoodsClassController {
     @Autowired
     private IGoodsClassService goodsClassService;
 
-    @ResponseBody
+
     @RequestMapping(value = "getList/{id}", method = RequestMethod.GET)
     public ResultEntity<List<GoodsClassEntity>> getList(@PathVariable("id") Integer id) {
         Assert.notNull(id);

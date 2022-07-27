@@ -3,7 +3,7 @@
  *                                  @版权所有翻版必究                                    *
  * ************************************************************************************/
 
-package com.it.listener;
+package com.it.filter.listener;
 
 import com.it.resultentity.GoodsBrandEntity;
 import org.apache.logging.log4j.LogManager;
