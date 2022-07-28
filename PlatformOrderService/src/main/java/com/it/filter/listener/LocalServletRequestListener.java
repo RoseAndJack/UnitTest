@@ -30,6 +30,8 @@ public class LocalServletRequestListener implements ServletRequestListener {
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
         HttpServletRequest request = (HttpServletRequest)sre.getServletRequest();
+
+        s
         String method = request.getMethod();
     }
 }
