@@ -68,7 +68,7 @@ public class OrderServiceApplication implements ApplicationContextAware, Command
     }
 
     @Override
-    public void run(String[] args) throws InterruptedException {
+    public void run(String[] args){
       //  while (true) {
          //   TimeUnit.SECONDS.sleep(5);
          //   GoodsBrandEntity entity = new GoodsBrandEntity();

@@ -5,6 +5,8 @@
 
 package com.it.filter.listener;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
@@ -32,7 +34,7 @@ public class LocalServletRequestListener implements ServletRequestListener {
      * @param sre
      */
     @Override
-    public void requestInitialized(ServletRequestEvent sre) {
+    public void requestInitialized(@NotNull ServletRequestEvent sre) {
         HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
         String method = request.getMethod();
         //dev branch.

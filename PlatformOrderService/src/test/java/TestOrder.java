@@ -4,13 +4,11 @@
  * ************************************************************************************/
 
 import com.it.OrderServiceApplication;
-import com.it.mapper.order.GoodsMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.util.Assert;
 
 /**
  * ClassName: OrderTest
@@ -23,15 +21,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @SpringBootTest(classes = {OrderServiceApplication.class})
 @RunWith(value = SpringJUnit4ClassRunner.class)
-@ComponentScan(basePackages = {"com.it.*"})
 public class TestOrder {
-    @Autowired
-    private GoodsMapper goodsMapper;
+
 
     @Test
     public void test1() {
-       // List<GoodsEntity> list = goodsMapper.getGoodsList();
-        System.out.println("dsf");
+        Assert.notNull("fsdfs");
+        // List<GoodsEntity> list = goodsMapper.getGoodsList();
+        System.out.println("df");
     }
 }
 

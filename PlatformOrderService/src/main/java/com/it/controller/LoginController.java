@@ -17,8 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * ClassName: LoginController
@@ -32,6 +36,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 public class LoginController extends BaseController {
 
+    private static final Integer SECOND = 1000 * 1000 * 1000;
     @Autowired
     private IGoodsBrandService goodsBrandService;
     @Autowired
@@ -40,14 +45,36 @@ public class LoginController extends BaseController {
     PlatformBaseMapper<GoodsBrandEntity> platformBaseMapper;
     private Logger log = LogManager.getLogger(LoginController.class);
 
+    ThreadLocal<Long> timeSet = new ThreadLocal();
+
     @RequestMapping(value = "/doLogin")
     public String doLogin(HttpServletRequest request) {
-      return "doLogin";
+        timeSet.set(System.nanoTime());
+        RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+        HttpServletRequest req = ((ServletRequestAttributes) attributes).getRequest();
+        if (request == req) {
+            System.out.println(" equals");
+        }
+
+        Long start = timeSet.get();
+        long end = System.nanoTime();
+        System.out.println("method spend time :" + (float) (end - start) / (SECOND));
+        return "doLogin";
     }
 
+    /**
+     * 添加数据处理接口
+     *
+     * @param request
+     * @return
+     * @throws InterruptedException
+     */
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
-    public ResultEntity<Object> index(@Autowired HttpServletRequest request) throws InterruptedException {
-        goodsBrandService.getBrandList();
-        return ResultEntityUtils.returnSuccess("OK");
+    public ResultEntity<Object> index(@Autowired HttpServletRequest request) {
+        List<GoodsBrandEntity> list = goodsBrandService.getBrandList();
+        if (null != list) {
+            return ResultEntityUtils.returnSuccess(list);
+        }
+        return ResultEntityUtils.returnFail(400, "error message .");
     }
 }
