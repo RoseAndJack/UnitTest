@@ -29,14 +29,9 @@ public class LocalServletRequestListener implements ServletRequestListener {
 
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
-
         HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
-
-
         String method = request.getMethod();
-
         //dev branch.
-//todo checkout a new branch.
-
+        //todo checkout a new branch.
     }
 }
