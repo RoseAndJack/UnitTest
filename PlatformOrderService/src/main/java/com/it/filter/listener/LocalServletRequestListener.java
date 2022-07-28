@@ -27,6 +27,10 @@ public class LocalServletRequestListener implements ServletRequestListener {
 
     }
 
+    /**
+     * 配置请求初始化时候的监听
+     * @param sre
+     */
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
         HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
