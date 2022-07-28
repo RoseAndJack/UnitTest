@@ -8,6 +8,7 @@ package com.it.filter.listener;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * ClassName: LocalServletRequestListener
@@ -28,6 +29,7 @@ public class LocalServletRequestListener implements ServletRequestListener {
 
     @Override
     public void requestInitialized(ServletRequestEvent sre) {
-
+        HttpServletRequest request = (HttpServletRequest)sre.getServletRequest();
+        String method = request.getMethod();
     }
 }
