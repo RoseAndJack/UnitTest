@@ -5,7 +5,6 @@
 
 package com.it.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.it.Service.order.IOrderService;
 import com.it.resultentity.ResultEntity;
 import com.it.resultentity.order.Order;
@@ -13,7 +12,10 @@ import com.it.utils.ResultEntityUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ClassName: OrderController
@@ -29,16 +31,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/order")
 public class OrderController {
 
-    private Logger log = LogManager.getLogger(OrderController.class);
+    private final Logger log = LogManager.getLogger(OrderController.class);
 
     @Autowired
     private IOrderService orderService;
 
-    /**
-     * @param id
-     * @return
-     * @throws JsonProcessingException
-     */
 
     @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
     public ResultEntity<Order> index(@PathVariable(value = "id") String id) {
