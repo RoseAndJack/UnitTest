@@ -30,12 +30,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/order")
 public class OrderController {
-
     private final Logger log = LogManager.getLogger(OrderController.class);
-
     @Autowired
     private IOrderService orderService;
-
 
     @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
     public ResultEntity<Order> index(@PathVariable(value = "id") String id) {
