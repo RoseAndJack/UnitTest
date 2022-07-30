@@ -36,7 +36,6 @@ public class OrderController {
 
     @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
     public ResultEntity<Order> index(@PathVariable(value = "id") String id) {
-        log.info("param id ===> " + id);
         Order order = orderService.queryOrderDataById(Integer.parseInt(id));
         return ResultEntityUtils.returnSuccess(order);
     }

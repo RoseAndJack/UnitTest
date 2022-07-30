@@ -7,6 +7,7 @@ package com.it.controller;
 
 import cn.shuibo.annotation.Encrypt;
 import com.it.Service.goodsbrand.IGoodsBrandService;
+import com.it.constant.Constant;
 import com.it.mapper.order.PlatformBaseMapper;
 import com.it.resultentity.GoodsBrandEntity;
 import com.it.resultentity.ResultEntity;
@@ -55,6 +56,6 @@ public class LoginController extends BaseController {
         if (null != list) {
             return ResultEntityUtils.returnSuccess(list);
         }
-        return ResultEntityUtils.returnFail(400, "OK");
+        return ResultEntityUtils.returnFail(Constant.ERROR_CODE, "OK");
     }
 }

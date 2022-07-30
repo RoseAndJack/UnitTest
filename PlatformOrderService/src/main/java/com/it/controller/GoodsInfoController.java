@@ -46,7 +46,6 @@ public class GoodsInfoController {
      * @param classId
      * @return
      */
-
     @RequestMapping(value = "/page/{currentIndex}/{size}/{classId}", method = RequestMethod.GET)
     public ResultEntity<List<GoodsWithSoldAmountEntity>> getGoodsPageInfo(@PathVariable("currentIndex") Integer currentIndex, @PathVariable("size") Integer size,
                                                                           @PathVariable("classId") Integer classId) {
