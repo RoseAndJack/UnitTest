@@ -36,6 +36,7 @@ public class GoodsBrandController {
     @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
     public ResultEntity<List<GoodsBrandEntity>> getBrandList() {
 
+        System.out.println("index of our lines.");
         return ResultEntityUtils.returnFail(400, "查询结果为空");
     }
 }

@@ -5,6 +5,7 @@
 
 package com.it.controller;
 
+import cn.shuibo.annotation.Encrypt;
 import com.it.Service.goodsbrand.IGoodsBrandService;
 import com.it.mapper.order.PlatformBaseMapper;
 import com.it.resultentity.GoodsBrandEntity;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * ClassName: LoginController
@@ -42,12 +44,17 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "/doLogin")
     public String doLogin(HttpServletRequest request) {
-      return "doLogin";
+        return "doLogin";
     }
 
+    //@Decrypt
+    @Encrypt
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
-    public ResultEntity<Object> index(@Autowired HttpServletRequest request) throws InterruptedException {
-        goodsBrandService.getBrandList();
-        return ResultEntityUtils.returnSuccess("OK");
+    public ResultEntity<Object> index(@Autowired HttpServletRequest request) {
+        List<GoodsBrandEntity> list = goodsBrandService.getBrandList();
+        if (null != list) {
+            return ResultEntityUtils.returnSuccess(list);
+        }
+        return ResultEntityUtils.returnFail(400, "OK");
     }
 }
