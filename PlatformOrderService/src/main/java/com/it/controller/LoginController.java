@@ -16,6 +16,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,6 +51,7 @@ public class LoginController extends BaseController {
 
     //@Decrypt
     @Encrypt
+    @CrossOrigin
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public ResultEntity<Object> index(@Autowired HttpServletRequest request) {
         List<GoodsBrandEntity> list = goodsBrandService.getBrandList();

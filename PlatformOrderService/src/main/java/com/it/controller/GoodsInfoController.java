@@ -51,7 +51,9 @@ public class GoodsInfoController {
                                                                           @PathVariable("classId") Integer classId) {
         if (null != currentIndex) {
             List<GoodsWithSoldAmountEntity> list = goodsService.getGoodsPageInfo(currentIndex, size, classId);
-            return ResultEntityUtils.returnSuccess(list);
+            if(null!=list) {
+                return ResultEntityUtils.returnSuccess(list);
+            }
         }
         return ResultEntityUtils.returnFail(400, "failed.");
     }
