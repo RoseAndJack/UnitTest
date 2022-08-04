@@ -5,6 +5,7 @@
 
 package com.it;
 
+import cn.shuibo.annotation.EnableSecurity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.annotation.MapperScan;
@@ -33,6 +34,7 @@ import java.util.concurrent.ExecutorService;
  * @author: fengwensdl@qq.com
  * @version: 1.0.0
  */
+@EnableSecurity
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 @ComponentScan(basePackages = {"com.it.*"})
 @MapperScan("com.it.mapper.*")
@@ -76,6 +78,5 @@ public class OrderServiceApplication implements ApplicationContextAware, Command
          //   entity.setGoodsBrandName("test_goods_brand_name");
          //   rabbitTemplate.convertAndSend("rabbit_test_queue", entity);
      //   }
-
     }
 }

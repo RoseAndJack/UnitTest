@@ -49,9 +49,15 @@ public class LoginController extends BaseController {
         return "doLogin";
     }
 
+    /**
+     * origins:是允许访问的列表（origins=“网址”）
+     * maxAge:准备响应前的 缓存持续的 最大时间
+     * @param request
+     * @return
+     */
     //@Decrypt
     @Encrypt
-    @CrossOrigin
+    @CrossOrigin(origins = "*", maxAge = 3600L)
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public ResultEntity<Object> index(@Autowired HttpServletRequest request) {
         List<GoodsBrandEntity> list = goodsBrandService.getBrandList();
