@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -50,8 +53,9 @@ public class LoginController extends BaseController {
     }
 
     /**
-     * origins:是允许访问的列表（origins=“网址”）
+     * origins:是允许访问的列表(origins=“网址”)
      * maxAge:准备响应前的 缓存持续的 最大时间
+     *
      * @param request
      * @return
      */
@@ -59,8 +63,29 @@ public class LoginController extends BaseController {
     @Encrypt
     @CrossOrigin(origins = "*", maxAge = 3600L)
     @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
-    public ResultEntity<Object> index(@Autowired HttpServletRequest request) {
+    public ResultEntity<Object> index() throws IOException {
         List<GoodsBrandEntity> list = goodsBrandService.getBrandList();
+        File file = new File("D://test.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        if (file.exists() && file.canRead()) {
+            System.out.println(file.getName());
+            System.out.println(file.getAbsolutePath());
+        }
+        try (FileOutputStream outputStream = new FileOutputStream(file)) {
+            String string = "input a value.";
+            byte[] content = string.getBytes();
+            for (byte b:content
+                 ) {
+                System.out.println((char)b);
+            }
+            outputStream.write(content);
+            outputStream.write(56);
+            System.out.println();
+            outputStream.flush();
+        } catch (Exception e) {
+        }
         if (null != list) {
             return ResultEntityUtils.returnSuccess(list);
         }
